@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <title>PDM</title>
+</head>
+<body>
+    <section id="visualisation">
+        <div id="actions">
+            <a download="card.png">Image</a>
+            <a>JSON (WIP)</a>
+        </div>
+    </section>
+    <section id="informations">
+        <p>Effect Points (EP) budget: <span id="ep">0</span></p>
+        <form onsubmit="event.preventDefault();" enctype="multipart/form-data">
+            <label for="name">
+                <span>Name:</span>
+                <input type="text" name="name" id="name">
+            </label>
+            <label for="type" id="type">
+                <span>Type:</span>
+                <select name="type">
+                    <option value="warrior">Warrior</option>
+                    <option value="item">Item</option>
+                    <option value="invocation">Invocation</option>
+                </select>
+            </label>
+            <label for="strength" id="strength">
+                <span>Strength:</span>
+                <select name="strength">
+                    <option value="weak">Weak</option>
+                    <option value="normal">Normal</option>
+                    <option value="strong">Strong</option>
+                </select>
+            </label>
+            <label for="image">
+                <span>Image:</span>
+                <input type="file" name="image" accept="image/webp, image/jpeg, image/png">
+            </label>
+            <label for="keywords" id="keywords">
+                <span>Keywords:</span>
+                <div></div>
+                <select name="keywords">
+                    <option value="default" >Select a keyword</option>
+                    <option value="ace">Ace</option>
+                    <option value="overwork">Overwork</option>
+                    <option value="overwhelm">Overwhelm</option>
+                    <option value="piercer">Piercer</option>
+                    <option value="teamwork">Teamwork</option>
+                    <option value="followup">Followup</option>
+                    <option value="pressure">Pressure</option>
+                    <option value="strengthened">Strengthened</option>
+                    <option value="underwhelm">Underwhelm</option>
+                    <option value="sniper">Sniper</option>
+                    <option value="inconspicuous">Inconspicuous</option>
+                    <option value="blocker">Blocker</option>
+                    <option value="fumble">Fumble</option>
+                </select>
+            </label>
+            <label for="effect" id="effect">
+                <span>Effect:</span>
+                <div>
+                    <textarea name="effect_text" rows="4"></textarea>
+                    <button aria-controls="effect_ep" id="plus"></button>
+                    <input type="text" name="effect_ep" value="0" disabled>
+                    <button aria-controls="effect_ep" id="minus"></button>
+                </div>
+            </label>
+            <label for="gimmicky">
+                <span>Gimmicky:</span>
+                <div class="toggle">
+                    <input type="checkbox" name="gimmicky">
+                    <span role="checkbox"></span>
+                </div>
+            </label>
+            <label for="consistent">
+                <span>Consistent:</span>
+                <div class="toggle">
+                    <input type="checkbox" name="consistent">
+                    <span role="checkbox"></span>
+                </div>
+            </label>
+        </form>
+    </section>
+    <script src="/bundle.js"></script>
+</body>
+</html>

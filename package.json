@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "dom-to-image": "^2.6.0",
+    "downloadjs": "^1.4.7",
+    "html-to-image": "^1.11.11"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.6"
+  }
+}

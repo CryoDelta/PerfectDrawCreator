@@ -1,0 +1,331 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
+
+/** Reset **/
+*{
+    font-family: inherit;
+    font-style: inherit;
+    font-weight: inherit;
+    font-size: inherit;
+    text-decoration: inherit;
+    color: inherit;
+    background: none;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+}
+
+ul, ol, summary{
+    list-style: none;
+}
+
+/** Layout **/
+body{
+    height: 100vh;
+    display: grid;
+    grid-template-columns: min-content auto;
+    place-items: center;
+}
+
+#visualisation{
+    display: flex;
+    flex-direction: column-reverse;
+    padding: 0.5in;
+    gap: .25in;
+}
+
+#actions{
+    display: flex;
+    justify-content:space-around;
+}
+
+#card{
+    width: 2.5in;
+    height: 3.5in;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: min-content 1.5in min-content auto min-content;
+
+    &>*:not(img){
+        padding: 3px;
+    }
+
+    &>img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    &>div{
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.025in
+    }
+}
+
+#informations{
+    height: 100vh;
+    width: 100%;
+    padding: 0.5in;
+    display: grid;
+    gap: 0.5in;
+
+    &>p{
+        font-size: large;
+    }
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    gap:0.25in;
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar { 
+        display: none;
+    }
+
+    &>label{
+        display: flex;
+        flex-direction: column;
+        gap: 0.05in;
+
+        &>span{
+            font-size: large;
+        }
+    }
+}
+
+input, textarea, select, button, input::file-selector-button, a{
+    padding: 0.05in 0.1in;
+}
+
+input[type="file"]{
+    padding: 0;
+}
+
+#keywords>div{
+    display:flex;
+    flex-wrap: wrap;
+    gap: 0.05in;
+}
+
+#effect>div{
+    display:grid;
+    grid-template-columns: auto 32px;
+
+    &>textarea{
+        grid-row: span 3;
+    }
+
+    &>*:not(textarea){
+        aspect-ratio: 1/1;
+        text-align: center;
+    }
+
+    &>button{
+        &#plus::before{
+            content: "+";
+        }
+
+        &#minus::before{
+            content: "-";
+        }
+    }
+}
+
+textarea{
+    resize: none;
+
+    &::-webkit-scrollbar { 
+        display: none;
+    }
+}
+
+.toggle{
+    display: grid;
+    place-items: start;
+    --gap: 2px;
+
+    &>*{
+        grid-area: 1/1;
+    }
+
+    &>input, &>span{
+        height: 25px;
+        aspect-ratio: 2/1;
+    }
+
+    &>span{
+        position: relative;
+        pointer-events: none;
+        transition: all ease .25s;
+    }
+
+    &>span::after{
+        content: "";
+        display: block;
+        height: calc(100% - (var(--gap) * 2));
+        aspect-ratio: 1/1;
+        position: absolute;
+        top:var(--gap);
+        left:var(--gap);
+        transition: all ease .25s;
+    }
+
+    &>input:checked + span::after{
+        left: calc(50% + var(--gap) * 1.5);
+    }
+}
+
+/** Style **/
+
+:root{
+    --dark-grey : #383d3d;
+    --light-grey : #6c7474;
+}
+
+body{
+    background: url("/assets/tile.png");
+    background-size: 80px;
+    animation: slide 10s linear infinite;
+    font-family: "Urbanist", sans-serif;
+    font-weight: normal;
+    color: var(--dark-grey);
+}
+
+@keyframes slide {
+    0%{
+        background-position: 0px 0px;
+    }
+    100%{
+        background-position: 80px 100px;
+    }
+}
+
+button, input::file-selector-button, a{
+    font-family: "Urbanist", sans-serif;
+    background-color: var(--dark-grey);
+    color: white;
+    cursor: pointer;
+    transition: all ease .25s;
+}
+
+button:is(:hover, :focus), input::file-selector-button:is(:hover, :focus), a:is(:hover, :focus){
+    background-color: var(--light-grey);
+}
+
+#card{
+    background-color: white;
+    border: solid 1px var(--dark-grey);
+    font-family: "Caveat", cursive;
+    font-weight: bold;
+    font-optical-sizing: auto;
+
+    &>*{
+        border: solid 1px var(--dark-grey);
+    }
+}
+
+#informations{
+    background-color: white;
+
+    &>p{
+        font-weight: bold;
+    }
+}
+
+form>label>span{
+    font-weight: bold;
+}
+
+input, textarea, select, button, input::file-selector-button, .toggle>span, a{
+    border: solid 2px var(--dark-grey);
+    border-radius: 16px;
+}
+
+input::file-selector-button {
+    margin: -2px 0.05in -2px -2px;
+}
+
+input:is(:hover, :focus), textarea:is(:hover, :focus), select:is(:hover, :focus), button:is(:hover, :focus),
+input::file-selector-button:is(:hover, :focus), a:is(:hover, :focus){
+    border-color: var(--light-grey);
+}
+
+#effect>div{
+    border: 2px solid var(--dark-grey);
+    border-radius: 16px;
+    overflow: hidden;
+
+    &>*{
+        border-radius: 0;
+        border: 0;
+    }
+
+    &>*:not(textarea){
+        font-weight: bold;
+    }
+
+    &>#plus{
+        border-bottom-left-radius: 16px;
+    }
+
+    &>#minus{
+        border-top-left-radius: 16px;
+    }
+}
+
+.toggle{
+    &>input{
+        opacity: 0;
+        cursor: pointer;
+
+        &:checked + span{
+            background-color: var(--dark-grey);
+
+            &::after{
+                background-color: white;
+            }
+        }
+    }
+
+    &>span::after{
+        background-color: var(--dark-grey);
+        border-radius: 100%;
+    }
+}
+
+/** Responsive **/
+@media (max-width: 720px){
+    body{
+        grid-template-columns: 1fr;
+    }
+
+    #visualisation{
+        height: 100dvh;
+        justify-content: center;
+    }
+
+    #informations{
+        height: fit-content;
+    }
+}
+
+@media (min-width: 1080px){
+    body{
+        grid-template-columns: 1fr 2fr;
+    }
+
+    #informations{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    form{
+        display: grid;
+        grid-template-columns: calc(50% - 0.125in) calc(50% - 0.125in);
+    }
+}
